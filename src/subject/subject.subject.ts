@@ -4,6 +4,16 @@ import { Subject } from "../interfaces/subject.interface";
 export class ASubject implements Subject {
 
     private observers: Observer[] = [];
+    private name: string;
+
+    public showName: boolean;
+
+    constructor(name: string){
+        this.name = name;
+        this.showName = false;
+    }
+
+    getName(): string | null { return this.name; }
 
     attach(observer: Observer): void {
         if(!this.observers.includes(observer)){
@@ -19,7 +29,9 @@ export class ASubject implements Subject {
         this.observers = this.observers.filter(obs => obs != observer)
     }
 
-    notify(): void {
-        this.observers.forEach(obs => obs.update())
+    notify(showName:boolean = false): void {
+        this.showName = showName;
+        this.observers.forEach(obs => obs.update(this))
+
     }
 }

@@ -1,4 +1,5 @@
 import { Observer } from "../interfaces/observer.interfaces";
+import { Subject } from "../interfaces/subject.interface";
 
 export class AObserver implements Observer {
 
@@ -10,7 +11,13 @@ export class AObserver implements Observer {
 
     getName(): string { return this.name; }
 
-    update(): void {
-        console.log('Notificado')
+    update(subject: Subject): void {
+        let msg:string = `Hola, ${this.getName()} tienes una notificación`
+
+        if (subject.showName) {
+            msg += ` de ${subject.getName()}`;
+        }
+
+        console.log(msg);
     }
 }

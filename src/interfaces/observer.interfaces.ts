@@ -1,4 +1,6 @@
+import { Subject } from "./subject.interface"
+
 export interface Observer{
     getName(): string
-    update(): void
+    update(subject?: Subject): void
 }
