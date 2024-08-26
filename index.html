@@ -36,7 +36,25 @@
         </main>
 
         <footer>
-            <h1>Footer</h1>
+            <form id="creation-form">
+                <label>
+                    Type:
+                    <select id="type">
+                        <option value="subject">Subject</option>
+                        <option value="observer">Observer</option>
+                    </select>
+                    <button type="button" id="confirm">Confirm</button>
+                </label>
+
+                <div class="card novisible" id="card">
+                    <label>
+                        <span></span>
+                        <input type="text" id="name" placeholder="Name">
+                    </label>
+
+                    <button type="button" id="create">Create</button>
+                </div>
+            </form>
         </footer>
     </div>
 
