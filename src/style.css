@@ -133,7 +133,9 @@ section {
         flex-direction: column;
         & span,
         h3 {
-            color: black
+            color: black;
+            -webkit-user-select: none;
+            user-select: none;
         }
     }
 }

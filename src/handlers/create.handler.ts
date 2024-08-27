@@ -11,7 +11,11 @@ export const btnCreate = ({btn, select, input, div}: Props) =>{
 
         const div = document.createElement('div') as HTMLDivElement;
         const h3 = document.createElement('h3') as HTMLHeadingElement;
-        const span = document.createElement('span') as HTMLSpanElement;
+        const span = {
+            posts: document.createElement('span') as HTMLSpanElement,
+            notifications: document.createElement('span') as HTMLSpanElement,
+            subs: document.createElement('span') as HTMLSpanElement
+        };
         const btn = {
             Notify:     document.createElement('button') as HTMLButtonElement,
             RemoveSubs: document.createElement('button') as HTMLButtonElement,
@@ -26,12 +30,15 @@ export const btnCreate = ({btn, select, input, div}: Props) =>{
         if(type === TYPE.SUBJECT) {
             const subject = new ASubject(name);
             btn.Notify.textContent = 'Post';
-            span.textContent = subject.post.toString();
-
+            span.posts.textContent = subject.post.toString();
+            span.subs.textContent = `Subscripters: ${subject.observers}`;
             LIST_SUBJECT.push({
                 obj: subject,
                 btn: [btn.Notify],
-                countText: span
+                text: {
+                    span_posts: span.posts,
+                    span_subs: span.subs
+                }
             });
 
             if(LIST_OBSERVER){
@@ -43,17 +50,19 @@ export const btnCreate = ({btn, select, input, div}: Props) =>{
                 })
             }
 
-            div.appendChild(span);
+            div.appendChild(span.posts);
             div.appendChild(btn.Notify);
+            div.appendChild(span.subs);
             parent.appendChild(div);
             return
         }
 
-        const observer = new AObserver(name);
+        span.notifications.textContent = '0';
+        const observer = new AObserver(name, span.notifications);
 
         btn.RemoveSubs.textContent = 'Unsubscriber';
         btn.Subscriber.textContent = 'Subscriber';
-        span.textContent = observer.notifications.toString();
+        span.subs.textContent = `Canals: ${observer.subs}`;
 
         LIST_SUBJECT.forEach(sub => {
             const option = document.createElement('option') as HTMLOptionElement;
@@ -65,14 +74,20 @@ export const btnCreate = ({btn, select, input, div}: Props) =>{
         LIST_OBSERVER.push({
             obj: observer,
             btn: [btn.RemoveSubs, btn.Subscriber],
-            countText: span,
+            text: {
+                span_notifications: span.notifications,
+                span_subs: span.subs
+            },
             listSubs: select
         });
 
-        div.appendChild(span);
+
+
+        div.appendChild(span.notifications);
         div.appendChild(btn.RemoveSubs)
         div.appendChild(btn.Subscriber)
         div.appendChild(select)
+        div.appendChild(span.subs);
 
         parent.appendChild(div);
     }

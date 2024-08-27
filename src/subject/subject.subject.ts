@@ -3,11 +3,12 @@ import { Subject } from "../interfaces/subject.interface";
 
 export class ASubject implements Subject {
 
-    private observers: Observer[] = [];
+    private listObservers: Observer[] = [];
     private name: string;
 
     public showName: boolean = false;
     public post: number = 0
+    public observers: number = 0;
 
     constructor(name: string){
         this.name = name;
@@ -16,22 +17,29 @@ export class ASubject implements Subject {
     getName(): string | null { return this.name; }
 
     attach(observer: Observer): void {
-        if(!this.observers.includes(observer)){
-            this.observers.push(observer)
+        if(!this.listObservers.includes(observer)){
+            this.listObservers.push(observer)
+            this.observers++;
         }
         else{
-            throw new Error("Ya esta suscrito el observador " + observer.getName());
+            alert(`${observer.getName()}, ya estás suscrito a ${this.name}`);
+            throw new Error(`${observer.getName()}, ya estás suscrito a ${this.name}`);
         }
 
     }
 
-    dettach(observer: Observer): void {
-        this.observers = this.observers.filter(obs => obs != observer)
+    dettach(observer: Observer): boolean {
+        if(!this.listObservers.includes(observer)){
+            return false;
+        }
+        this.listObservers = this.listObservers.filter(obs => obs != observer);
+        this.observers--;
+        return true;
     }
 
     notify(showName:boolean = false): void {
         this.showName = showName;
-        this.observers.forEach(obs => obs.update(this))
-
+        this.listObservers.forEach(obs => obs.update(this));
+        this.post++;
     }
 }

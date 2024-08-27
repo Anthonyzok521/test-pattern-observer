@@ -1,6 +1,7 @@
 //import { setupCounter } from './handlers/counter.ts'
 import { btnConfirm } from './handlers/confirm.handler.ts';
 import { btnCreate } from './handlers/create.handler.ts';
+import { eventClick } from './handlers/eventClick.handler.ts';
 import './style.css'
 
 //setupCounter(document.querySelector<HTMLButtonElement>('#counter')!)
@@ -16,6 +17,9 @@ btnCreate({
     input: document.querySelector('#name') as HTMLInputElement,
     div: document.querySelectorAll('section') as NodeListOf<HTMLDivElement>
 })
+
+eventClick(document.querySelector('#subject') as HTMLDivElement)
+eventClick(document.querySelector('#observer') as HTMLDivElement)
 
 /* const subject = new ASubject('Subject 1');
 const subject2 = new ASubject('Subject 2');

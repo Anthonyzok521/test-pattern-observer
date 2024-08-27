@@ -5,9 +5,12 @@ export class AObserver implements Observer {
 
     private name: string;
     public notifications: number = 0
+    public textNotifications: HTMLSpanElement
+    public subs: number = 0
 
-    constructor(name: string){
+    constructor(name: string, span: HTMLSpanElement){
         this.name = name;
+        this.textNotifications = span
     }
 
     getName(): string { return this.name; }
@@ -19,6 +22,7 @@ export class AObserver implements Observer {
             msg += ` de ${subject.getName()}`;
         }
         this.notifications++;
-        console.log(msg);
+        this.textNotifications.textContent = this.notifications.toString();
+        console.log(this.notifications,msg);
     }
 }

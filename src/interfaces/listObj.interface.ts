@@ -4,7 +4,11 @@ import { Subject } from "./subject.interface";
 export interface ListObj {
     obj: Subject | Observer
     btn: HTMLButtonElement[]
-    countText: HTMLSpanElement
+    text?: {
+        span_posts?: HTMLSpanElement
+        span_notifications?: HTMLSpanElement
+        span_subs?: HTMLSpanElement
+    }
     listSubs? : HTMLSelectElement
 }
 
