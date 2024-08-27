@@ -6,11 +6,11 @@ export class ASubject implements Subject {
     private observers: Observer[] = [];
     private name: string;
 
-    public showName: boolean;
+    public showName: boolean = false;
+    public post: number = 0
 
     constructor(name: string){
         this.name = name;
-        this.showName = false;
     }
 
     getName(): string | null { return this.name; }

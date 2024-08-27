@@ -4,6 +4,7 @@ import { Subject } from "../interfaces/subject.interface";
 export class AObserver implements Observer {
 
     private name: string;
+    public notifications: number = 0
 
     constructor(name: string){
         this.name = name;
@@ -17,7 +18,7 @@ export class AObserver implements Observer {
         if (subject.showName) {
             msg += ` de ${subject.getName()}`;
         }
-
+        this.notifications++;
         console.log(msg);
     }
 }

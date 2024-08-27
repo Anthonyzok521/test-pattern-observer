@@ -1,6 +1,4 @@
 //import { setupCounter } from './handlers/counter.ts'
-import { ASubject } from './subject/subject.subject.ts';
-import { AObserver } from './observer/observer.observer.ts';
 import { btnConfirm } from './handlers/confirm.handler.ts';
 import { btnCreate } from './handlers/create.handler.ts';
 import './style.css'

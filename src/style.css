@@ -109,8 +109,8 @@ main {
 
 section {
     display: flex;
-    align-items: center;
-    justify-content: center;
+    gap: 5px;
+    padding: 5px;
     border-radius: 20px;
     border: solid #213547 1px;
     height: 100dvh;
@@ -121,6 +121,20 @@ section {
     }
     & .observer {
         border-left: solid white 3px;
+    }
+    & div {
+        width: 200px;
+        height: 200px;
+        background: white;
+        border-radius: 20px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        & span,
+        h3 {
+            color: black
+        }
     }
 }
 
